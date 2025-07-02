@@ -24,10 +24,26 @@ export async function POST(request) {
       email: email,
     });
 
-    return Response.json({ success: true, message: 'Form submitted successfully!' });
+    return new Response(JSON.stringify({ success: true, message: 'Form submitted successfully!' }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
   } catch (error) {
     console.error('Error:', error);
-    return Response.json({ error: 'Failed to submit form' }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to submit form' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
   }
 }
 
